@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 325 88" role="img" aria-labelledby="title desc">
+  <title id="title">Samish Digital Wave</title>
+  <desc id="desc">A premium gradient tile with a flowing S wave and AI node, paired with the Samish Digital Wave wordmark.</desc>
+  <defs>
+    <linearGradient id="tile" x1="7" y1="7" x2="76" y2="78" gradientUnits="userSpaceOnUse"><stop stop-color="#2563EB"/><stop offset=".58" stop-color="#0891B2"/><stop offset="1" stop-color="#7C3AED"/></linearGradient>
+    <linearGradient id="wave" x1="18" y1="20" x2="63" y2="65" gradientUnits="userSpaceOnUse"><stop stop-color="#FFFFFF"/><stop offset="1" stop-color="#BFF7FF"/></linearGradient>
+    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="2.2" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <g transform="translate(3 3)"><rect x="3" y="3" width="72" height="72" rx="21" fill="url(#tile)"/><rect x="3.75" y="3.75" width="70.5" height="70.5" rx="20.25" fill="none" stroke="#FFFFFF" stroke-opacity=".18" stroke-width="1.5"/><path d="M59 23c-8-8-27-8-35 0-8 7-3 15 8 17l15 3c10 2 12 10 5 15-8 6-23 4-30-3" fill="none" stroke="url(#wave)" stroke-width="7.5" stroke-linecap="round"/><path d="M21 59c10 8 23 9 33 3 6-4 11-3 16 1" fill="none" stroke="#67E8F9" stroke-width="4.5" stroke-linecap="round"/><circle cx="71" cy="10" r="4.5" fill="#C4B5FD" filter="url(#glow)"/></g>
+  <g transform="translate(98 13)"><text x="0" y="31" font-family="Poppins, Arial, sans-serif" font-size="32" font-weight="700" letter-spacing="-.4" fill="#FFFFFF">Samish</text><text x="1" y="52" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="600" letter-spacing="3.1" fill="#C9D5E8">DIGITAL WAVE</text><rect x="1" y="61" width="132" height="2.5" rx="1.25" fill="url(#tile)" opacity=".9"/></g>
+</svg>

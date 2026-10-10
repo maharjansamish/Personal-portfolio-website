@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 84 84" role="img" aria-labelledby="title">
+  <title id="title">Samish Digital Wave icon</title>
+  <defs><linearGradient id="g" x1="6" y1="6" x2="78" y2="78"><stop stop-color="#2563EB"/><stop offset=".58" stop-color="#0891B2"/><stop offset="1" stop-color="#7C3AED"/></linearGradient></defs>
+  <rect x="3" y="3" width="78" height="78" rx="23" fill="url(#g)"/><path d="M63 25c-9-9-29-9-38 0-8 8-3 16 9 19l15 3c10 2 12 10 5 15-9 7-24 4-32-3" fill="none" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round"/><path d="M21 63c11 8 24 9 35 3 6-4 11-3 16 1" fill="none" stroke="#67E8F9" stroke-width="5" stroke-linecap="round"/><circle cx="69" cy="19" r="5" fill="#C4B5FD"/>
+</svg>
