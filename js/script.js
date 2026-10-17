@@ -1,4 +1,7 @@
 /* Samish Digital Wave — shared interactions */
+// Progressive enhancement: content remains visible if JavaScript is unavailable.
+document.documentElement.classList.add('js');
+
 document.addEventListener('DOMContentLoaded', () => {
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -23,12 +26,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Reveal elements and animate skill bars as they enter the viewport.
+  // Reveal section content as it enters the viewport.
   const revealElements = document.querySelectorAll('.reveal');
-  const skillBars = document.querySelectorAll('.skill-bar');
   if (reducedMotion || !('IntersectionObserver' in window)) {
     revealElements.forEach((element) => element.classList.add('in-view'));
-    skillBars.forEach((bar) => bar.classList.add('animated'));
   } else {
     const revealObserver = new IntersectionObserver((entries, observer) => {
       entries.forEach((entry) => {
@@ -39,77 +40,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }, { threshold: 0.12 });
     revealElements.forEach((element) => revealObserver.observe(element));
-    skillBars.forEach((bar) => revealObserver.observe(bar));
-
-    const skillsObserver = new IntersectionObserver((entries, observer) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('animated');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.45 });
-    skillBars.forEach((bar) => skillsObserver.observe(bar));
-  }
-
-  // Editable stat counters. Values are intentionally placeholders.
-  const counters = document.querySelectorAll('[data-counter]');
-  const runCounter = (counter) => {
-    const target = Number(counter.dataset.counter || 0);
-    const suffix = counter.dataset.suffix || '';
-    const duration = reducedMotion ? 0 : 1100;
-    const start = performance.now();
-    const tick = (now) => {
-      const progress = duration === 0 ? 1 : Math.min((now - start) / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
-      counter.textContent = `${Math.round(target * eased)}${suffix}`;
-      if (progress < 1) requestAnimationFrame(tick);
-    };
-    requestAnimationFrame(tick);
-  };
-  if (counters.length) {
-    const counterObserver = new IntersectionObserver((entries, observer) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          runCounter(entry.target);
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.7 });
-    counters.forEach((counter) => counterObserver.observe(counter));
-  }
-
-  // Home-page testimonial slider.
-  const slider = document.querySelector('[data-slider]');
-  if (slider) {
-    const track = slider.querySelector('.testimonial-track');
-    const slides = [...slider.querySelectorAll('.testimonial')];
-    const dots = [...slider.querySelectorAll('.slider-dot')];
-    const previous = slider.querySelector('[data-prev]');
-    const next = slider.querySelector('[data-next]');
-    let index = 0;
-    let timer;
-    const showSlide = (newIndex) => {
-      index = (newIndex + slides.length) % slides.length;
-      track.style.transform = `translateX(-${index * 100}%)`;
-      slides.forEach((slide, slideIndex) => slide.setAttribute('aria-hidden', String(slideIndex !== index)));
-      dots.forEach((dot, dotIndex) => {
-        dot.classList.toggle('active', dotIndex === index);
-        dot.setAttribute('aria-current', dotIndex === index ? 'true' : 'false');
-      });
-    };
-    const restart = () => {
-      if (reducedMotion) return;
-      window.clearInterval(timer);
-      timer = window.setInterval(() => showSlide(index + 1), 6500);
-    };
-    previous?.addEventListener('click', () => { showSlide(index - 1); restart(); });
-    next?.addEventListener('click', () => { showSlide(index + 1); restart(); });
-    dots.forEach((dot, dotIndex) => dot.addEventListener('click', () => { showSlide(dotIndex); restart(); }));
-    slider.addEventListener('mouseenter', () => window.clearInterval(timer));
-    slider.addEventListener('mouseleave', restart);
-    showSlide(0);
-    restart();
   }
 
   // FAQ accordions.

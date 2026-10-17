@@ -8,12 +8,15 @@ A complete, framework-free portfolio site built with semantic HTML, shared CSS a
 - `about.html` — About Me
 - `services.html` — Services
 - `contact.html` — Contact and booking form
-- `assets/samish-logo-horizontal-dark.png` — primary navbar and footer logo
+- `assets/samish-logo-horizontal-960.png` — resized primary navbar and footer logo
+- `assets/samish-logo-horizontal-dark.png` — original horizontal logo artwork
 - `assets/samish-logo-stacked-dark.png` — social preview and stacked brand artwork
 - `assets/samish-icon-512.png` — favicon and hero brand icon
-- `assets/samish-maharjan.png` — website-ready portrait
+- `assets/samish-maharjan.png` — original portrait source
+- `assets/samish-maharjan-600.jpg` and `assets/samish-maharjan-1106.jpg` — responsive, compressed portrait images used on the site
 - `css/style.css` — shared responsive design
 - `js/script.js` — menu, animations, counters, slider, FAQ and form validation
+- `robots.txt` and `sitemap.xml` — crawler access and canonical page discovery for `www.samish.com.np`
 
 ## Edit the placeholders
 
@@ -55,3 +58,7 @@ Then open `http://localhost:8000`.
 - **GitHub Pages:** push the files to a repository, then enable Pages from the root of the selected branch.
 
 No package installation or build step is required.
+
+## SEO and image notes
+
+Each HTML page has a unique title and description, a canonical URL on `https://www.samish.com.np`, Open Graph and X/Twitter metadata, and page-appropriate JSON-LD. The homepage portrait loads eagerly from a responsive `srcset`, while the Lighthouse-identified LCP header logo is explicitly prioritized; the About portrait and below-the-fold footer logos are lazy-loaded. Responsive portrait variants use JPEG, and the navbar/footer use a 960px-wide logo to avoid downloading an unnecessarily large original. If the primary domain or page paths change, update the canonical URLs, social metadata, JSON-LD, `robots.txt` and `sitemap.xml` together.
